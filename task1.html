@@ -85,16 +85,63 @@
 
     .project-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
     }
     .project-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+    /* Style for linkable project cards */
     .project-link-wrapper {
         text-decoration: none;
         color: inherit;
         display: block;
+        cursor: pointer;
+    }
+    
+    /* Container for cropped background images */
+    .cropped-image-container {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 10px;
+        background-size: cover; /* This makes the image cover the container */
+        background-position: center top; /* Align to top to crop bottom */
+        overflow: hidden; /* Crucial: Hides any part of the image outside the container */
+        border: 1px solid #ddd; /* Optional: A subtle border for the frame */
+    }
+    /* Custom width for the dialog box to fit the 200x200 image */
+    .photo-modal-dialog {
+        max-width: 300px !important; /* Forces a very narrow dialog */
+    }
+
+    /* NEW: Styling for black carousel arrows */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-image: none; /* Remove default Bootstrap arrow image */
+        background-color: transparent; /* Ensure no background color for the icon container itself */
+        color: black; /* Set the icon color to black */
+        font-size: 2rem; /* Make the arrow icons larger for better visibility */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px; /* Adjust size if needed */
+        height: 40px; /* Adjust size if needed */
+        opacity: 0.8; /* Slight transparency */
+    }
+
+    .carousel-control-prev-icon::before {
+        content: "\2039"; /* Unicode for left angle quote */
+    }
+
+    .carousel-control-next-icon::before {
+        content: "\203A"; /* Unicode for right angle quote */
+    }
+
+    /* Hover effect for better UX */
+    .carousel-control-prev:hover .carousel-control-prev-icon,
+    .carousel-control-next:hover .carousel-control-next-icon {
+        opacity: 1;
+        color: #333; /* Slightly darker on hover */
     }
 
     footer {
@@ -125,13 +172,18 @@
     <img src="photo.png" class="profile-img" id="profileImg" alt="Profile" onerror="showEmoji()">
     <span class="profile-emoji" id="profileEmoji">🧑‍💻</span>
   </div>
-
+  
+  <div class="text-center mt-3">
+    <button type="button" class="btn btn-sm btn-outline-info" data-bs-toggle="modal" data-bs-target="#photoGalleryModal">
+        Show More Photos
+    </button>
+  </div>
   <div class="content">
     <main class="text-center">
       <div class="mt-4">
         <h2 class="section-title">About Me & Professional Summary</h2>
         <p class="lead">
-          Hello! I'm <strong>Sachin Verma</strong>, a passionate Computer Science Engineering student currently interning to hone my skills in <strong>Frontend Development</strong>. My primary stack includes <strong>HTML5, CSS3, JavaScript, and React.js</strong>. I thrive on building responsive, user-friendly, and performant web applications.
+          Hello! I'm <strong>Sachin Verma</strong>, a passionate Computer Science Engineering student currently interning to hone my skills in <strong>Frontend Development</strong>. My primary stack includes <strong>HTML5, CSS3, JavaScript, and React.js</strong>. I thrive on building responsive, user-friendly, and performant web applications. I actively seek opportunities to transform design concepts into engaging digital realities.
         </p>
       </div>
       
@@ -154,8 +206,8 @@
              <a href="task2.html" target="_self" class="project-link-wrapper">
                 <div class="card h-100 project-card border-primary shadow-sm">
                   <div class="card-body">
-                    <h5 class="card-title text-primary">Responsive Portfolio Site</h5>
-                    <p class="card-text">Developed a multi-page personal portfolio using <strong>Bootstrap 5</strong> to showcase skills and projects, focusing on <strong>mobile-first design</strong> and clean aesthetics. (Task 1 & 2)</p>
+                    <h5 class="card-title text-primary">Responsive Portfolio Site (Current)</h5>
+                    <p class="card-text">Developed a multi-page personal portfolio using <strong>Bootstrap 5</strong>, focusing on <strong>mobile-first design</strong> and clean aesthetics. (Task 1 & 2)</p>
                     <span class="badge bg-primary">Bootstrap 5</span>
                     <span class="badge bg-primary">HTML/CSS</span>
                   </div>
@@ -163,6 +215,17 @@
             </a>
           </div>
 
+          <div class="col">
+            <div class="card h-100 project-card border-success shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title text-success">Python Desktop Calculator</h5>
+                <p class="card-text">A simple, functional calculator application built using <strong>Python</strong> and its native <strong>Tkinter</strong> GUI library. This project highlights my understanding of application logic and event handling.</p>
+                <span class="badge bg-success">Python</span>
+                <span class="badge bg-success">Tkinter</span>
+              </div>
+            </div>
+          </div>
+          
           <div class="col">
             <a href="task4.html" target="_self" class="project-link-wrapper">
                 <div class="card h-100 project-card border-warning shadow-sm">
@@ -177,22 +240,11 @@
           </div>
 
           <div class="col">
-            <div class="card h-100 project-card border-success shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title text-success">Python Desktop Calculator</h5>
-                <p class="card-text">A simple, functional calculator application built using <strong>Python</strong> and its native <strong>Tkinter</strong> GUI library. This project highlights my understanding of application logic.</p>
-                <span class="badge bg-success">Python</span>
-                <span class="badge bg-success">Tkinter</span>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col">
             <a href="task3.html" target="_self" class="project-link-wrapper">
                 <div class="card h-100 project-card border-info shadow-sm">
                   <div class="card-body">
                     <h5 class="card-title text-info">JavaScript Event Handler Demo</h5>
-                    <p class="card-text">Demonstrates core **event handling** logic (Task 3) by changing a descriptive message's text and style upon a button click.</p>
+                    <p class="card-text">Demos core **event handling** logic (Task 3) by changing a descriptive message's text and style upon a button click.</p>
                     <span class="badge bg-info">JavaScript</span>
                     <span class="badge bg-info">Event Listeners</span>
                   </div>
@@ -224,7 +276,37 @@
     </main>
   </div>
 
-  <footer>
+  <div class="modal fade" id="photoGalleryModal" tabindex="-1" aria-labelledby="photoGalleryModalLabel" aria-hidden="true">
+  <div class="modal-dialog photo-modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="photoGalleryModalLabel">My Professional Photos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="cropped-image-container" style="background-image: url('photo2.jpg'); background-position: center calc(50% - 12.5px);"></div>
+            </div>
+            <div class="carousel-item">
+              <div class="cropped-image-container" style="background-image: url('photo3.jpg'); background-position: center calc(50% - 12.5px);"></div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
     <p>© 2025 Sachin Verma | Frontend Developer Intern</p>
   </footer>
 
