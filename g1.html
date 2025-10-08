@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sachin Verma - Portfolio</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #3949ab;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    .profile-img {
+      width: 240px;
+      height: 250px;
+      border-radius: 80%;
+      border: 5px solid #8806df;
+      object-fit: cover;
+    }
+
+    .profile-emoji {
+      font-size: 200px;
+      display: none;
+    }
+
+    main {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 700px;
+    }
+
+    footer {
+      background: #3949ab;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    .lead {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Sachin Verma</h1>
+    <p>Frontend Developer Intern</p>
+  </header>
+
+  <!-- Main Content -->
+  <div class="content">
+    <main class="text-center">
+      <!-- Profile Image with Emoji Fallback -->
+      <img src="photo.png" class="profile-img" id="profileImg" alt="Profile" onerror="showEmoji()">
+      <span class="profile-emoji" id="profileEmoji">👤</span>
+
+      <!-- Bio -->
+      <p class="lead">
+        Hello! My name is <strong>Sachin Verma</strong>. I am a Computer Science Engineering student passionate about web development and programming. 
+        I enjoy building interactive projects using HTML, CSS, JavaScript, and frameworks like React.  
+        Currently, I am enhancing my frontend skills through practical tasks during my internship.
+      </p>
+
+      <!-- JavaScript Button -->
+      <button id="greetBtn" class="btn btn-primary mt-3">Click Me</button>
+      <p id="message" class="mt-3 fw-bold text-success"></p>
+
+      <!-- Back to Main Page Button -->
+      <a href="task2.html" class="btn btn-dark mt-4" target="_self">⬅ Back to Main Page</a>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Sachin Verma | All Rights Reserved</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JavaScript -->
+  <script>
+    // Greeting Button Function
+    document.getElementById("greetBtn").addEventListener("click", function() {
+      document.getElementById("message").textContent = "🚀 Welcome to my webpage! Thanks for visiting.";
+    });
+
+    // Emoji Fallback if Image Not Found
+    function showEmoji() {
+      document.getElementById("profileImg").style.display = "none";
+      document.getElementById("profileEmoji").style.display = "inline-block";
+    }
+  </script>
+</body>
+</html>
