@@ -11,8 +11,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #e3f2fd; /* Light blue background */
+            background-color: #e3f2fd; /* Light blue initial background */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.5s ease; /* Smooth transition for color change */
         }
         .card {
             max-width: 500px;
@@ -39,9 +40,23 @@
     </div>
 
     <script>
+        // FUNCTION 1: Generates a random hexadecimal color code (e.g., #a3b4c5)
+        function getRandomColor() {
+            // Generates a random number up to FFFFFF (16777215)
+            // toString(16) converts it to a hexadecimal string
+            let color = '#' + Math.floor(Math.random()*16777215).toString(16);
+            
+            // Pad the string with leading zeros if necessary to ensure it's always 6 characters long
+            while(color.length < 7) {
+                color += '0';
+            }
+            return color;
+        }
+
         // 1. Get references to the HTML elements
         const button = document.getElementById('colorChangeBtn');
         const message = document.getElementById('dynamicMessage');
+        const body = document.body;
 
         // 2. Define the function to handle the click event
         function handleClick() {
@@ -52,7 +67,10 @@
             message.classList.remove('text-muted');
             message.classList.add('text-info', 'fw-bold');
 
-            // C. Optional: Disable the button after use
+            // C. Change the body background color to a random color
+            body.style.backgroundColor = getRandomColor(); 
+
+            // D. Optional: Disable the button after use
             button.disabled = true;
             button.textContent = "Completed!";
         }
